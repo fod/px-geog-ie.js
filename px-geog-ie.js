@@ -10,10 +10,10 @@
 	_.any(vars, function(d, i) {
 	    if (d.match(this.geogRx)) {
 		this.geogIdx = i;
-		return true;
+		return this.geogIdx;
 	    }
 	    else {
-		return false;
+		return undefined;
 	    }
 	}, this);
     };
@@ -98,6 +98,7 @@
 	_.each(areaDecode, function(v, k) {
 	    decode[k] = dataset[v[this.areaCodeIdx]];
 	}, this);
+
 	return decode;
     };
 
