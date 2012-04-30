@@ -67,9 +67,27 @@
 	}
 	return undefined;
     };
-	    
 
-	
+    px.hasNUTS3 = function() {
+
+	this.isGeographical();
+
+	if (this.geogIdx === undefined) {
+	    return false;
+	}
+
+	var areaCodes = this.codes(this.geogIdx),
+            nuts3 = ['IE11', 'IE12', 'IE13', 'IE22', 'IE23', 'IE24', 'IE25'];
+
+	if (_.all(nuts3, function(d) { return _.include(areaCodes, d); })) {
+	    this.areaType = 'regnuts3';
+	    this.areaCodeIdx = 0;
+	    return true;
+	}
+	else {
+	    return false;
+	}
+    };
 
     px.geogRx = /^(.*(?:region|area|county|electoral|authority|residence|office).*)$/i;
 
